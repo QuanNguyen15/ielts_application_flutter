@@ -55,7 +55,7 @@ class IeltsTestingScreen extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) {
         return Card(
-          margin: EdgeInsets.symmetric(vertical: 7.0),
+          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
           elevation: 4.0,
           child: ListTile(
             leading: CircleAvatar(
