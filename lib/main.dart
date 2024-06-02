@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ielts_practise_flutter_project/pages/grammar_detail.dart';
-import 'package:ielts_practise_flutter_project/pages/home.dart';
-import 'package:ielts_practise_flutter_project/pages/ielts_testing.dart';
-import 'package:ielts_practise_flutter_project/pages/listening_detail.dart';
-import 'package:ielts_practise_flutter_project/pages/reading_detail.dart';
-import 'package:ielts_practise_flutter_project/pages/speaking_detail.dart';
-import 'package:ielts_practise_flutter_project/pages/writing_detail.dart';
+import 'package:ielts_practise_flutter_project/pages/grammar/grammar_detail.dart';
+import 'package:ielts_practise_flutter_project/pages/layout/home.dart';
+import 'package:ielts_practise_flutter_project/pages/ielts_practise/ielts_testing.dart';
+import 'package:ielts_practise_flutter_project/pages/listening/listening_detail.dart';
+import 'package:ielts_practise_flutter_project/pages/reading/reading_detail.dart';
+import 'package:ielts_practise_flutter_project/pages/speaking/speaking_detail.dart';
+import 'package:ielts_practise_flutter_project/pages/writing/writing_detail.dart';
 
 
 void main() {
