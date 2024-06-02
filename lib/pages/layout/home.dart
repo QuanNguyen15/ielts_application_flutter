@@ -43,7 +43,7 @@ class IeltsPracticeScreen extends StatelessWidget {
                 return Builder(
                   builder: (BuildContext context) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25.0), // Match padding of list items
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0), // Match padding of list items
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15.0), // Rounded corners
                         child: Container(
@@ -64,148 +64,54 @@ class IeltsPracticeScreen extends StatelessWidget {
             ),
             Column(
               children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/ielts_testing');
-                  },
-                  child: Container(
-                    height: 140.0,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: Card(
-                      elevation: 4.0,
-                      shadowColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.pending_actions, size: 40.0),
-                            SizedBox(width: 20.0),
-                            Text('IELTS TESTING', style: TextStyle(fontSize: 18.0)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/listening');
-                  },
-                  child: Container(
-                    height: 140.0,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: Card(
-                      elevation: 4.0,
-                      shadowColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.hearing, size: 40.0),
-                            SizedBox(width: 20.0),
-                            Text('LISTENING', style: TextStyle(fontSize: 18.0)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/reading');
-                  },
-                  child: Container(
-                    height: 140.0,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: Card(
-                      elevation: 4.0,
-                      shadowColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.book, size: 40.0),
-                            SizedBox(width: 20.0),
-                            Text('READING', style: TextStyle(fontSize: 18.0)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/writing');
-                  },
-                  child: Container(
-                    height: 140.0,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: Card(
-                      elevation: 4.0,
-                      shadowColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.edit, size: 40.0),
-                            SizedBox(width: 20.0),
-                            Text('WRITING', style: TextStyle(fontSize: 18.0)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/speaking');
-                  },
-                  child: Container(
-                    height: 140.0,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: Card(
-                      elevation: 4.0,
-                      shadowColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.mic, size: 40.0),
-                            SizedBox(width: 20.0),
-                            Text('SPEAKING', style: TextStyle(fontSize: 18.0)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/grammar');
-                  },
-                  child: Container(
-                    height: 140.0,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                    child: Card(
-                      elevation: 4.0,
-                      shadowColor: Colors.grey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.language, size: 40.0),
-                            SizedBox(width: 20.0),
-                            Text('GRAMMAR', style: TextStyle(fontSize: 18.0)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                buildAnimatedPracticeCard(context, 'IELTS TESTING', Icons.pending_actions, '/ielts_testing'),
+                buildAnimatedPracticeCard(context, 'LISTENING', Icons.hearing, '/listening'),
+                buildAnimatedPracticeCard(context, 'READING', Icons.book, '/reading'),
+                buildAnimatedPracticeCard(context, 'WRITING', Icons.edit, '/writing'),
+                buildAnimatedPracticeCard(context, 'SPEAKING', Icons.mic, '/speaking'),
+                buildAnimatedPracticeCard(context, 'GRAMMAR', Icons.language, '/grammar'),
               ],
             ),
             SizedBox(height: 20.0),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildAnimatedPracticeCard(BuildContext context, String title, IconData iconData, String route) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 500),
+        opacity: 1.0,
+        curve: Curves.easeIn,
+        child: Container(
+          height: 140.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+          child: Card(
+            elevation: 4.0,
+            shadowColor: Colors.grey,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    iconData,
+                    size: 40.0,
+                    color: Colors.blue, // Icon color
+                  ),
+                  SizedBox(width: 20.0),
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
