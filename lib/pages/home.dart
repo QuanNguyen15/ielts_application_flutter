@@ -32,7 +32,7 @@ class IeltsPracticeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 20.0), // Add spacing below the app bar
+            const SizedBox(height: 20.0), // Add spacing below the app bar
             CarouselSlider(
               options: CarouselOptions(
                 height: 220.0,

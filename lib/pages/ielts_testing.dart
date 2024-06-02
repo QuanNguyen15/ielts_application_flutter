@@ -54,15 +54,30 @@ class IeltsTestingScreen extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       itemCount: 10,
       itemBuilder: (context, index) {
+        // Calculate progress value (from 0.0 to 1.0)
+        double progressValue = (index + 1) / 10.0;
+        // Calculate score
+        int score = index + 1;
         return Card(
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
           elevation: 4.0,
           child: ListTile(
             leading: CircleAvatar(
               child: Text((index + 1).toString()),
             ),
             title: Text('$part: Item ${(index + 1)}'),
-            subtitle: Text('Score: ${(index + 1) * 10}'), // Placeholder for test score
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LinearProgressIndicator(
+                  value: progressValue,
+                  backgroundColor: Colors.grey[300],
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                ),
+                SizedBox(height: 5),
+                Text('Score: $score/10'),
+              ],
+            ),
           ),
         );
       },
