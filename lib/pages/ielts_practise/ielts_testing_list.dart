@@ -6,7 +6,7 @@ class IeltsTestingScreen extends StatefulWidget {
   _IeltsTestingScreenState createState() => _IeltsTestingScreenState();
 }
 
-class _IeltsTestingScreenState extends State<IeltsTestingScreen> {
+class _IeltsTestingScreenState extends State<IeltsTestingScreen> with TickerProviderStateMixin {
   final List<int> _itemsPart1 = [];
   final List<int> _itemsPart2 = [];
   final List<int> _itemsPart3 = [];
@@ -26,7 +26,7 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('IELTS Testing Practice'),
+          title: const Text('IELTS Testing Practice'),
           elevation: 0,
           backgroundColor: Colors.blue[500],
           actions: const [
@@ -96,7 +96,7 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> {
           onVisible();
         }
       },
-      child: AnimatedList(
+      child: KeepAliveAnimatedList(
         key: listKey,
         initialItemCount: items.length,
         padding: const EdgeInsets.all(10.0),
@@ -129,7 +129,7 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> {
                 backgroundColor: Colors.grey[300],
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text('Score: $score/10'),
             ],
           ),
@@ -137,4 +137,36 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> {
       ),
     );
   }
+}
+
+class KeepAliveAnimatedList extends StatefulWidget {
+  const KeepAliveAnimatedList({
+    Key? key,
+    required this.itemBuilder,
+    required this.initialItemCount,
+    required this.padding,
+  }) : super(key: key);
+
+  final Widget Function(BuildContext, int, Animation<double>) itemBuilder;
+  final int initialItemCount;
+  final EdgeInsetsGeometry padding;
+
+  @override
+  _KeepAliveAnimatedListState createState() => _KeepAliveAnimatedListState();
+}
+
+class _KeepAliveAnimatedListState extends State<KeepAliveAnimatedList> with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return AnimatedList(
+      key: widget.key,
+      initialItemCount: widget.initialItemCount,
+      padding: widget.padding,
+      itemBuilder: widget.itemBuilder,
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
