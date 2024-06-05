@@ -82,7 +82,7 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> with TickerProv
 
   void _loadItems(List<int> items, GlobalKey<AnimatedListState> listKey) async {
     for (int i = 0; i < 10; i++) {
-      await Future.delayed(const Duration(milliseconds: 120));
+      await Future.delayed(const Duration(milliseconds: 125));
       items.add(i);
       listKey.currentState?.insertItem(items.length - 1);
     }
@@ -108,7 +108,6 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> with TickerProv
   }
 
   Widget _buildItem(String part, int item, Animation<double> animation) {
-    double progressValue = (item + 1) / 10.0;
     int score = item + 1;
 
     return SizeTransition(
@@ -121,18 +120,7 @@ class _IeltsTestingScreenState extends State<IeltsTestingScreen> with TickerProv
             child: Text((item + 1).toString()),
           ),
           title: Text('$part: Item ${(item + 1)}'),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LinearProgressIndicator(
-                value: progressValue,
-                backgroundColor: Colors.grey[300],
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-              ),
-              const SizedBox(height: 5),
-              Text('Score: $score/10'),
-            ],
-          ),
+          subtitle: Text('Score: $score/10'),
         ),
       ),
     );
